@@ -13,6 +13,8 @@ public class Bird extends Animalia{
         SHOREBIRD,
         WATERFOWL
     }
+
+
     private Type type;
     private List<String> characteristic = new ArrayList<String>();
     private int numOfWings;
