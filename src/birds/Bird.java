@@ -2,7 +2,7 @@ package birds;
 
 import java.util.*;
 
-public class Bird extends Animalia{
+public class Bird extends Animalia {
 
     enum Type {
         BIRDS_OF_PREY,
@@ -21,7 +21,7 @@ public class Bird extends Animalia{
     private boolean isExtinct = false;
     private String name;
 
-    private final Set<String> allowedFoods = new HashSet<>(Arrays.asList(
+    public final static Set<String> allowedFoods = new HashSet<>(Arrays.asList(
             "berries", "seeds", "fruits", "insects", "other birds", "eggs", "small mammals", "fish", "buds", "larvae", "aquatic invertebrates", "nuts", "vegetation"
     ));
 
@@ -32,10 +32,10 @@ public class Bird extends Animalia{
         return name;
     }
 
-    public void setName(String name) throws IllegalArgumentException{
-        if(name == "" || name == null){
+    public void setName(String name) throws IllegalArgumentException {
+        if (name == "" || name == null) {
             throw new IllegalArgumentException("Enter a valid name");
-        }else {
+        } else {
             this.name = name;
         }
     }
@@ -61,9 +61,9 @@ public class Bird extends Animalia{
     }
 
     public void setNumOfWings(int numOfWings) throws IllegalArgumentException {
-        if(numOfWings == 0 || numOfWings == 2) {
+        if (numOfWings == 0 || numOfWings == 2) {
             this.numOfWings = numOfWings;
-        }else {
+        } else {
             throw new IllegalArgumentException("Wings have to be 0 or 2.");
         }
     }
@@ -80,10 +80,10 @@ public class Bird extends Animalia{
         return food;
     }
 
-    public void setFood(List<String> foods) throws IllegalArgumentException{
-        for (String foodItem : foods ){
+    public void setFood(List<String> foods) throws IllegalArgumentException {
+        for (String foodItem : foods) {
             System.out.println(foodItem);
-            if(allowedFoods.contains(foodItem.trim().toLowerCase()) && foodItem != null && foodItem != ""){
+            if (allowedFoods.contains(foodItem.trim().toLowerCase()) && foodItem != null && foodItem != "") {
                 food.add(foodItem.trim().toLowerCase());
             } else {
                 throw new IllegalArgumentException("Enter a valid Food item");
@@ -92,19 +92,19 @@ public class Bird extends Animalia{
     }
 
 
-    public void fly(){
+    public void fly() {
         System.out.println("Flap flap");
     }
 
-    public void eat(List<String> food){
+    public void eat(List<String> food) {
         System.out.println("The bird is eating");
     }
 
-    public void chirp(){
+    public void chirp() {
         System.out.println("chirp chirp");
     }
 
-    public void drink(){
+    public void drink() {
         System.out.println("The bird is drinking");
     }
 
@@ -119,9 +119,20 @@ public class Bird extends Animalia{
     }
 
     @Override
-    public void displayCharacteristics() {
+    public String displayCharacteristics() {
 
-        System.out.println(getCharacteristic());
+//        System.out.println(getCharacteristic());
+        String content = "";
+        for (int i = 0; i < getCharacteristic().size(); i++) {
+            if (i == 0) {
+                content = content + characteristic;
+            } else {
+                content = content + ". " + characteristic;
+            }
+
+        }
+        content += ".";
+        return content;
 
     }
 }
