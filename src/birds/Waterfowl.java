@@ -23,7 +23,6 @@ public class Waterfowl extends Bird implements WaterBird{
 
     public Waterfowl(){
         setType(Type.WATERFOWL);
-
     }
 
     public Waterfowl(String birdName) throws IllegalArgumentException{
@@ -33,13 +32,13 @@ public class Waterfowl extends Bird implements WaterBird{
             setCharacteristic(Arrays.asList("They live near water sources"));
             setNumOfWings(2);
             setWaterBodies(Arrays.asList("lake", "reservoir", "pond", "river"));
-            setFood(Arrays.asList("fish","aquatic invertebrates","insects"));
+            setFood(Set.of("fish","aquatic invertebrates","insects"));
         } else {
             throw new IllegalArgumentException("Enter a bird from : SWANS, DUCKS OR GEESE");
         }
     }
 
-    public Waterfowl(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, List<String> waterBodies, List<String> food){
+    public Waterfowl(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, List<String> waterBodies, Set<String> food){
         this();
         setName(birdName);
         setCharacteristic(characteristics);
@@ -51,8 +50,8 @@ public class Waterfowl extends Bird implements WaterBird{
 
 
     @Override
-    public void swim() {
-        System.out.println("Race me");
+    public String swim() {
+        return "Race me";
     }
 
 

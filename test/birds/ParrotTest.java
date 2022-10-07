@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +18,7 @@ public class ParrotTest {
     public void setupParrot(){
         p1 = new Parrot();
         p2 = new Parrot("sulfur-crested cockatoo");
-        p3 = new Parrot("rose-ring parakeet", Arrays.asList("They have a short, curved beak and are known for their intelligence and ability to mimic sounds."),2, false, Arrays.asList("vegetation", "berries", "nuts","seeds"),10,"Good Morning");
+        p3 = new Parrot("rose-ring parakeet", Arrays.asList("They have a short, curved beak and are known for their intelligence and ability to mimic sounds."),2, false, Set.of("vegetation", "berries", "nuts", "seeds"),10,"Good Morning");
     }
 
     @Test
@@ -26,7 +27,7 @@ public class ParrotTest {
         assertEquals(null,p1.getName());
         assertEquals(0,p1.getNumOfWings());
         assertEquals(Arrays.asList(), p1.getCharacteristic());
-        assertEquals(Arrays.asList(), p1.getFood());
+        assertEquals(Set.of(), p1.getFood());
         assertEquals(false,p1.isExtinct());
         assertEquals(0,p1.getNoOfWords());
         assertEquals(null,p1.getFavoriteSaying());
@@ -36,7 +37,7 @@ public class ParrotTest {
     public void testSecondConstructor(){
         assertEquals("sulfur-crested cockatoo",p2.getName());
         assertEquals(2,p2.getNumOfWings());
-        assertEquals(Arrays.asList("vegetation", "berries", "nuts","seeds"),p2.getFood());
+        assertEquals(Set.of("vegetation", "berries", "nuts","seeds"),p2.getFood());
         assertEquals(Arrays.asList("They have a short, curved beak and are known for their intelligence and ability to mimic sounds."),p2.getCharacteristic());
         assertEquals(Bird.Type.PARROT,p2.getType());
         assertEquals(false,p2.isExtinct());

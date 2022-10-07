@@ -2,6 +2,7 @@ package birds;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class Parrot extends Bird {
 
@@ -17,7 +18,7 @@ public class Parrot extends Bird {
         if(birdName.toLowerCase() == "sulfur-crested cockatoo" || birdName.toLowerCase() == "rose-ring parakeet" || birdName.toLowerCase() == "gray parrot"){
             setName(birdName);
             setNumOfWings(2);
-            setFood(Arrays.asList("vegetation", "berries", "nuts","seeds"));
+            setFood(Set.of("vegetation", "berries", "nuts", "seeds"));
             setCharacteristic(Arrays.asList("They have a short, curved beak and are known for their intelligence and ability to mimic sounds."));
         }
         else{
@@ -26,7 +27,7 @@ public class Parrot extends Bird {
 
     }
 
-    public Parrot(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, List<String> food, int noOfWords, String favoriteSaying) {
+    public Parrot(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, Set<String> food, int noOfWords, String favoriteSaying) {
 
         this();
         setName(birdName);

@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,8 +17,7 @@ public class BirdsOfPreyTest {
 
     @Before
     public void setup(){
-
-        hawk = new BirdsOfPrey("hawks", Arrays.asList("They have sharp, hooked beaks with visible nostrils."), false, 2, Arrays.asList("small mammals", "other birds"));
+        hawk = new BirdsOfPrey("hawks", Arrays.asList("They have sharp, hooked beaks with visible nostrils."), false, 2, Set.of("small mammals", "other birds"));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class BirdsOfPreyTest {
         assertEquals(Bird.Type.BIRDS_OF_PREY, BoP.getType());
         assertEquals(0,BoP.getNumOfWings());
         assertEquals(Arrays.asList(), BoP.getCharacteristic());
-        assertEquals(Arrays.asList(), BoP.getFood());
+        assertEquals(Set.of(), BoP.getFood());
         assertEquals(false,BoP.isExtinct());
     }
 
@@ -38,7 +38,7 @@ public class BirdsOfPreyTest {
         assertEquals(2,BoP1.getNumOfWings());
         assertEquals(Bird.Type.BIRDS_OF_PREY, BoP1.getType());
         assertEquals(Arrays.asList("They have sharp, hooked beaks with visible nostrils."), BoP1.getCharacteristic());
-        assertEquals(Arrays.asList("small mammals","insects"), BoP1.getFood());
+        assertEquals(Set.of("small mammals","insects"), BoP1.getFood());
         assertEquals(false,BoP1.isExtinct());
     }
 
@@ -49,7 +49,7 @@ public class BirdsOfPreyTest {
         assertEquals(2,BoP1.getNumOfWings());
         assertEquals(Bird.Type.BIRDS_OF_PREY, BoP1.getType());
         assertEquals(Arrays.asList("They have sharp, hooked beaks with visible nostrils."), BoP1.getCharacteristic());
-        assertEquals(Arrays.asList("small mammals", "other birds"), BoP1.getFood());
+        assertEquals(Set.of("small mammals", "other birds"), BoP1.getFood());
         assertEquals(false,BoP1.isExtinct());
     }
 
