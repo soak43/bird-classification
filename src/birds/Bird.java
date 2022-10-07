@@ -25,7 +25,7 @@ public class Bird extends Animalia {
             "berries", "seeds", "fruits", "insects", "other birds", "eggs", "small mammals", "fish", "buds", "larvae", "aquatic invertebrates", "nuts", "vegetation"
     ));
 
-    private List<String> food = new ArrayList<String>();
+    private Set<String> food = new HashSet<>();
 
     public String getName() {
         return name;
@@ -75,11 +75,11 @@ public class Bird extends Animalia {
         isExtinct = extinct;
     }
 
-    public List<String> getFood() {
+    public Set<String> getFood() {
         return food;
     }
 
-    public void setFood(List<String> foods) throws IllegalArgumentException {
+    public void setFood(Set<String> foods) throws IllegalArgumentException {
         for (String foodItem : foods) {
             System.out.println(foodItem);
             if (allowedFoods.contains(foodItem.trim().toLowerCase()) && foodItem != null && foodItem != "") {
@@ -91,20 +91,20 @@ public class Bird extends Animalia {
     }
 
 
-    public void fly() {
-        System.out.println("Flap flap");
+    public String fly() {
+        return "Flap flap";
     }
 
-    public void eat(List<String> food) {
-        System.out.println("The bird is eating");
+    public String eat(Set<String> food) {
+        return "The bird is eating";
     }
 
-    public void chirp() {
-        System.out.println("chirp chirp");
+    public String chirp() {
+        return "chirp chirp";
     }
 
-    public void drink() {
-        System.out.println("The bird is drinking");
+    public String drink() {
+        return "The bird is drinking";
     }
 
     public String toString() {
@@ -124,9 +124,9 @@ public class Bird extends Animalia {
         String content = "";
         for (int i = 0; i < getCharacteristic().size(); i++) {
             if (i == 0) {
-                content = content + characteristic;
+                content = content + characteristic.get(i);
             } else {
-                content = content + ". " + characteristic;
+                content = content + ". " + characteristic.get(i);
             }
 
         }

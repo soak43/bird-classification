@@ -25,14 +25,14 @@ public class FlightlessBirds extends Bird {
         setCharacteristic(Arrays.asList("They live on the ground"));
         setNumOfWings(0);
         if (birdName.toLowerCase() == "emu" || birdName.toLowerCase() == "moa") {
-            setFood(Arrays.asList("seeds", "fruits"));
+            setFood(Set.of("seeds", "fruits"));
         } else {
-            setFood(Arrays.asList("buds", "berries", "seeds"));
+            setFood(Set.of("buds", "berries", "seeds"));
         }
 
     }
 
-    public FlightlessBirds(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, List<String> food) {
+    public FlightlessBirds(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, Set<String> food) {
         this();
         setName(birdName);
         setCharacteristic(characteristics);
@@ -42,7 +42,7 @@ public class FlightlessBirds extends Bird {
     }
 
     @Override
-    public void fly() throws IllegalArgumentException{
+    public String fly() throws IllegalArgumentException{
         throw new IllegalArgumentException();
     }
 

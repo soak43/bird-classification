@@ -1,85 +1,74 @@
 package birds;
 
 import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
 public class BirdTest {
 
+    private Bird b;
+    private Bird b2;
 
     @Before
-    public void setup(){
-
-    }
-    @org.junit.Test
-    public void getName() {
+    public void setupBird(){
+        b = new BirdsOfPrey();
+        b2 = new BirdsOfPrey("eagles");
     }
 
-    @org.junit.Test
-    public void setName() {
+    @Test(expected = IllegalArgumentException.class)
+    public void IllegalArgCase1(){
+        b.setFood(Set.of("beans","berries"));
     }
 
-    @org.junit.Test
-    public void getType() {
+    @Test(expected = IllegalArgumentException.class)
+    public void IllegalArgCase2(){
+        b.setName("");
     }
 
-    @org.junit.Test
-    public void setType() {
+    @Test(expected = IllegalArgumentException.class)
+    public void IllegalArgCase3(){
+        b.setNumOfWings(3);
     }
 
-    @org.junit.Test
-    public void getCharacteristic() {
+    @Test
+    public void flyTest(){
+        assertEquals("Flap flap",b.fly());
     }
 
-    @org.junit.Test
-    public void setCharacteristic() {
+    @Test
+    public void eatTest(){
+        assertEquals("The bird is eating",b.eat(Set.of("berries","fish")));
     }
 
-    @org.junit.Test
-    public void getNumOfWings() {
+    @Test
+    public void chirpTest(){
+        assertEquals("chirp chirp",b.chirp());
     }
 
-    @org.junit.Test
-    public void setNumOfWings() {
+    @Test
+    public void drinkTest(){
+        assertEquals("The bird is drinking",b.drink());
     }
 
-    @org.junit.Test
-    public void isExtinct() {
+    @Test
+    public void toStringTest(){
+        assertEquals("Bird{" +
+                ", type='" + Bird.Type.BIRDS_OF_PREY + '\'' +
+                ", characteristic='" + "[They have sharp, hooked beaks with visible nostrils.]" + '\'' +
+                ", extinct=" + "false" +
+                ", numOfWings=" + "2" +
+                ", favoriteFoods=" + Set.of("small mammals", "insects") +
+                '}',b2.toString());
     }
 
-    @org.junit.Test
-    public void setExtinct() {
+    @Test
+    public void getCharTest(){
+        b.setCharacteristic(Arrays.asList("They have sharp, hooked beaks with visible nostrils.","They have sharp claws"));
+        assertEquals("They have sharp, hooked beaks with visible nostrils.. They have sharp claws.",b.displayCharacteristics());
     }
 
-    @org.junit.Test
-    public void getFood() {
-    }
-
-    @org.junit.Test
-    public void setFood() {
-    }
-
-    @org.junit.Test
-    public void fly() {
-    }
-
-    @org.junit.Test
-    public void eat() {
-    }
-
-    @org.junit.Test
-    public void chirp() {
-    }
-
-    @org.junit.Test
-    public void drink() {
-    }
-
-    @org.junit.Test
-    public void testToString() {
-    }
-
-    @org.junit.Test
-    public void displayCharacteristics() {
-    }
 }

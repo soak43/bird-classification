@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +14,7 @@ public class FlightlessBirdsTest {
 
     @Before
     public void setup(){
-        FB1 = new FlightlessBirds("emu", Arrays.asList("They live on the ground"), 2, false,Arrays.asList("seeds", "fruits"));
+        FB1 = new FlightlessBirds("emu", Arrays.asList("They live on the ground"), 2, false,Set.of("seeds", "fruits"));
     }
 
     @Test
@@ -23,7 +24,7 @@ public class FlightlessBirdsTest {
         assertEquals(null,FB1.getName());
         assertEquals(0,FB1.getNumOfWings());
         assertEquals(Arrays.asList(), FB1.getCharacteristic());
-        assertEquals(Arrays.asList(), FB1.getFood());
+        assertEquals(Set.of(), FB1.getFood());
         assertEquals(false,FB1.isExtinct());
     }
 
@@ -34,7 +35,7 @@ public class FlightlessBirdsTest {
         assertEquals(0,FB1.getNumOfWings());
         assertEquals(Bird.Type.FLIGHTLESS_BIRDS, FB1.getType());
         assertEquals(Arrays.asList("They live on the ground"), FB1.getCharacteristic());
-        assertEquals(Arrays.asList("seeds", "fruits"), FB1.getFood());
+        assertEquals(Set.of("seeds", "fruits"), FB1.getFood());
         assertEquals(false,FB1.isExtinct());
     }
 
@@ -45,7 +46,7 @@ public class FlightlessBirdsTest {
         assertEquals(0,FB1.getNumOfWings());
         assertEquals(Bird.Type.FLIGHTLESS_BIRDS, FB1.getType());
         assertEquals(Arrays.asList("They live on the ground"), FB1.getCharacteristic());
-        assertEquals(Arrays.asList("buds", "berries", "seeds"), FB1.getFood());
+        assertEquals(Set.of("buds", "berries", "seeds"), FB1.getFood());
         assertEquals(false,FB1.isExtinct());
     }
 
@@ -56,7 +57,7 @@ public class FlightlessBirdsTest {
         assertEquals(0,FB1.getNumOfWings());
         assertEquals(Bird.Type.FLIGHTLESS_BIRDS, FB1.getType());
         assertEquals(Arrays.asList("They live on the ground"), FB1.getCharacteristic());
-        assertEquals(Arrays.asList("seeds", "fruits"), FB1.getFood());
+        assertEquals(Set.of("seeds", "fruits"), FB1.getFood());
         assertEquals(true,FB1.isExtinct());
     }
 
