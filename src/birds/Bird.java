@@ -134,6 +134,19 @@ public class Bird extends Animalia {
         return content;
 
     }
+
+    @Override
+    public boolean equals(Object obj){
+        Bird b = (Bird)obj;
+        if(b.numOfWings == numOfWings && b.getCharacteristic().equals(characteristic) &&
+            b.name == name && b.isExtinct == isExtinct && b.getType() == getType() &&
+            b.food.equals(food))
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
 

@@ -7,14 +7,14 @@ import java.util.*;
 public class Conservatory {
 
     private Set<Aviary> aviarySet = new HashSet<>();
-    private Map<String,List> alphabeticalOrderDictionaryOfBirds =  new TreeMap<>();
+    private Map<String,ArrayList<String>> alphabeticalOrderDictionaryOfBirds =  new TreeMap<>();
     private Map<String,Integer> conservatoryFoodReq= new HashMap<>();
     // good
     public Set<Aviary> getAviarySet() {
         return aviarySet;
     }
     // good
-    public Map<String,List> getAlphabeticalOrderDictionaryOfBirds(){
+    public Map<String,ArrayList<String>> getAlphabeticalOrderDictionaryOfBirds(){
         return  alphabeticalOrderDictionaryOfBirds;
     }
     // good
@@ -22,11 +22,14 @@ public class Conservatory {
         return conservatoryFoodReq;
     }
 
-    public Conservatory(Set<Aviary> aviarySet) {
-
-        this.aviarySet = aviarySet;
-        sortAlphabetically();
-        getFoodReq();
+    public Conservatory(Set<Aviary> aviarySet) throws IllegalArgumentException {
+        if(aviarySet.size() <= 20 && aviarySet.size() != 0) {
+            this.aviarySet = aviarySet;
+            sortAlphabetically();
+            getFoodReq();
+        } else {
+            throw new IllegalArgumentException("Please do not add empty aviary or more than 20 Aviaries per conservatory");
+        }
 
     }
 //   GOOD  add new aviary
@@ -54,7 +57,7 @@ public class Conservatory {
         return aviary;
     }
 //    GOOD
-    private Aviary addAviary(String name,String location,List<Bird> birds) {
+    public Aviary addAviary(String name,String location,List<Bird> birds) {
         Aviary aviary = addAviary(name, location);
         for (Bird bird : birds) {
             aviary.addBird(bird);
@@ -92,29 +95,33 @@ public class Conservatory {
 
 
 //good
-    public Map<String,List> sortAlphabetically(){
+    public Map<String,ArrayList<String>> sortAlphabetically(){
         for(Aviary aviary: aviarySet){
             for(Bird bird : aviary.getBirdList()){
                 if(alphabeticalOrderDictionaryOfBirds.containsKey(bird.getName())){
-                    alphabeticalOrderDictionaryOfBirds.get(bird.getName()).add(aviary.getLocation());
+                    ArrayList<String> l = alphabeticalOrderDictionaryOfBirds.get(bird.getName());
+                    l.add(aviary.getLocation());
                 }else{
-                    alphabeticalOrderDictionaryOfBirds.put(bird.getName(), Arrays.asList(aviary.getLocation()));
+                    ArrayList<String> l = new ArrayList<String>();
+                    l.add(aviary.getLocation());
+                    alphabeticalOrderDictionaryOfBirds.put(bird.getName(),l );
                 }
             }
         }
         return alphabeticalOrderDictionaryOfBirds;
     }
-// good
     public List<Aviary> getAviaryListForBird(Bird bird){
         List<Aviary> aviariesFound = new ArrayList<>();
         for(Aviary aviary: aviarySet){
-            if(aviary.getBirdList().contains(bird)){
-                aviariesFound.add(aviary);
+            for(Bird birdInAviary: aviary.getBirdList()){
+                if(bird.equals(birdInAviary)){
+                    aviariesFound.add(aviary);
+                }
             }
         }
         return aviariesFound;
     }
-//Good
+
     public Map<String,Integer> getFoodReq(){
         for(Aviary aviary: aviarySet){
             for(Map.Entry<String,Integer> entry : aviary.getAviaryFoodStore().entrySet()){
@@ -128,16 +135,17 @@ public class Conservatory {
         return conservatoryFoodReq;
     }
 //    good
-    public void aviaryLocBirdInfo(){
+    public String aviaryLocBirdInfo(){
         String content = "";
         for(Aviary aviary: aviarySet){
-            content = content + aviary.getName() + aviary.getLocation() + " ";
+            content = content + aviary.getName() + " " +aviary.getLocation() + " ";
             for(Bird bird: aviary.getBirdList()){
                 content = content + bird.getName() + " ";
             }
             content = content + "\n";
         }
-        System.out.println(content);
+        return content;
+//        System.out.println(content);
     }
 //    good
     public String getAviaryInfo(String aviaryName){
