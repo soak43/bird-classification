@@ -19,8 +19,9 @@ public class Conservatory {
     }
 
     public Conservatory(Set<Aviary> aviarySet) {
+
         this.aviarySet = aviarySet;
-        sortedAlphabetically(aviarySet);
+        sortAlphabetically();
         getFoodReq();
 
     }
@@ -28,7 +29,8 @@ public class Conservatory {
     public Aviary addAviary(Aviary aviary) throws IllegalStateException{
         if(aviarySet.size()<20){
             aviarySet.add(aviary);
-            sortedAlphabetically();
+            sortAlphabetically();
+            getFoodReq();
             return aviary;
         } else{
             throw new IllegalStateException("Cannot add more than 20 aviaries per conservatory");
@@ -86,11 +88,11 @@ public class Conservatory {
     }
 
 // good
-    public Map<String,List> sortedAlphabetically(){
+    public Map<String,List> getAlphabeticalOrderDictionaryOfBirds(){
         return  alphabeticalOrderDictionaryOfBirds;
     }
 //good
-    public Map<String,List> sortedAlphabetically(Set<Aviary> aviarySet){
+    public Map<String,List> sortAlphabetically(){
         for(Aviary aviary: aviarySet){
             for(Bird bird : aviary.getBirdList()){
                 if(alphabeticalOrderDictionaryOfBirds.containsKey(bird.getName())){
