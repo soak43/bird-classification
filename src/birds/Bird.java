@@ -25,7 +25,7 @@ public class Bird extends Animalia {
             "berries", "seeds", "fruits", "insects", "other birds", "eggs", "small mammals", "fish", "buds", "larvae", "aquatic invertebrates", "nuts", "vegetation"
     ));
 
-    private List<String> food = new ArrayList<String>();
+    private Set<String> food = new HashSet<>();
 
     public String getName() {
         return name;
@@ -75,7 +75,7 @@ public class Bird extends Animalia {
         isExtinct = extinct;
     }
 
-    public List<String> getFood() {
+    public Set<String> getFood() {
         return food;
     }
 
