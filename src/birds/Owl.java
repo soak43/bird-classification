@@ -2,6 +2,7 @@ package birds;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class Owl extends Bird{
 
@@ -11,10 +12,10 @@ public class Owl extends Bird{
         setName("Owl");
         setCharacteristic(Arrays.asList("They are distinguished by the facial disks that frame the eyes and bill."));
         setNumOfWings(2);
-        setFood(Arrays.asList("insects","fish","small mammals"));
+        setFood(Set.of("insects","fish","small mammals"));
     }
 
-    public Owl(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, List<String> food){
+    public Owl(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, Set<String> food){
 
         this();
         setName(birdName);

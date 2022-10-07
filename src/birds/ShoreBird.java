@@ -28,7 +28,7 @@ public class ShoreBird extends Bird implements WaterBird{
 
     public ShoreBird(String birdName){
         this();
-        if(birdName.toLowerCase() == "great auk" || birdName.toLowerCase() == "horned puffin" || birdName.toLowerCase() == "African Jacana"){
+        if(birdName.toLowerCase() == "great auk" || birdName.toLowerCase() == "horned puffin" || birdName.toLowerCase() == "african jacana"){
             setName(birdName);
             setCharacteristic(Arrays.asList("They live near water sources"));
             setNumOfWings(2);
@@ -44,13 +44,13 @@ public class ShoreBird extends Bird implements WaterBird{
                     setWaterBodies(Arrays.asList("wetland"));
                     break;
             }
-            setFood(Arrays.asList("fish","aquatic invertebrates","insects"));
+            setFood(Set.of("fish","aquatic invertebrates","insects"));
         }
         else {
             throw new IllegalArgumentException("Enter a bird from : GREAT AUK, HORNED PUFFIN, and AFRICAN JACANA");
         }
     }
-    public ShoreBird(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, List<String> waterBodies, List<String> food){
+    public ShoreBird(String birdName, List<String> characteristics, int noOfWings, boolean isExtinct, List<String> waterBodies, Set<String> food){
         this();
         setName(birdName);
         setCharacteristic(characteristics);
@@ -60,7 +60,7 @@ public class ShoreBird extends Bird implements WaterBird{
         setFood(food);
     }
    @Override
-    public void swim() {
-        System.out.println("Splish splash!");
+    public String swim() {
+        return "Splish splash!";
     }
 }

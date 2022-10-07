@@ -2,6 +2,7 @@ package birds;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class BirdsOfPrey extends Bird {
 
@@ -16,17 +17,17 @@ public class BirdsOfPrey extends Bird {
             setNumOfWings(2);
             setName(birdName);
             if(birdName.toLowerCase() == "osprey"){
-                setFood(Arrays.asList("small mammals", "other birds"));
+                setFood(Set.of("small mammals", "other birds"));
             }
             else{
-                setFood(Arrays.asList("small mammals","insects"));
+                setFood(Set.of("small mammals","insects"));
             }
         } else {
             throw new IllegalArgumentException("Enter a bird from : HAWKS, EAGLES OR OSPREY");
         }
     }
 
-    public BirdsOfPrey(String birdName, List<String> characteristics, boolean isExtinct, int numOfWings, List<String> food){
+    public BirdsOfPrey(String birdName, List<String> characteristics, boolean isExtinct, int numOfWings, Set<String> food){
 
         this();
         setName(birdName);
@@ -34,7 +35,6 @@ public class BirdsOfPrey extends Bird {
         setCharacteristic(characteristics);
         setExtinct(isExtinct);
         setFood(food);
-
     }
 
     public String Hunt(String prey){
