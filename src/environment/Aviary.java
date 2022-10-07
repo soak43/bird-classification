@@ -1,42 +1,69 @@
-package birds;
+package environment;
 
+import birds.Bird;
 import birds.Bird.Type;
 
 import java.util.*;
 
 public class Aviary {
 
+
+    final int MAX_BIRDS_IN_AVIARY = 5;
+    private String name;
+    private List<Bird> birdList = new ArrayList<>();
+
+    private Set<Type> birdTypeSet = new HashSet<>();
+
+    private HashMap<String, Integer> aviaryFoodStore = new HashMap<String, Integer>();
+
+    private String location;
+
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws IllegalArgumentException{
+        if(name == null || name == ""){
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
         this.name = name;
     }
 
-    String name;
-    List<Bird> birdList = new ArrayList<>();
-    Set<Type> birdTypeSet = new HashSet<>();
+    public List<Bird> getBirdList() {
+        return birdList;
+    }
 
-    HashMap<String, Integer> aviaryFoodStore = new HashMap<String, Integer>();
+
+    public Set<Type> getBirdTypeSet() {
+        return birdTypeSet;
+    }
+
+
+    public HashMap<String, Integer> getAviaryFoodStore() {
+        return aviaryFoodStore;
+    }
+
 
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(String location) throws IllegalArgumentException{
+        if(location == null || location == ""){
+            throw new IllegalArgumentException("Location cannot be empty or null");
+        }
         this.location = location;
     }
-
-    String location;
-    final int MAX_BIRDS_IN_AVIARY = 5;
-
+    /*
+    * In order to initialize an Aviary, name and location are necessary
+    * */
     public Aviary(String name, String location) throws IllegalArgumentException{
         if(name.trim() == "" || location.trim()  == ""){
             throw new IllegalArgumentException("Enter a valid location or name");
         }else{
-            this.name = name;
-            this.location = location;
+            setName(name);
+            setLocation(location);
         }
     }
     public Aviary(String name, String location, Bird bird){
@@ -46,9 +73,9 @@ public class Aviary {
     }
     public Aviary(String name, String location, List<Bird> userBirdList) {
         this(name,location);
-        for(Bird b : userBirdList){
-            addBird(b);
-            addFood(b);
+        for(Bird bird : userBirdList){
+            addBird(bird);
+            addFood(bird);
         }
     }
     private String generateBirdInfo(Bird bird){
@@ -56,7 +83,7 @@ public class Aviary {
         return content;
     }
 
-    private String avaiaryInfo(){
+    public String aviaryInfo(){
         if(birdList.size()!=0) {
             String content = "The" + name + " aviary has the following birds that reside here as follows. ";
             for (Bird b : birdList) {
@@ -69,16 +96,7 @@ public class Aviary {
         }
     }
 
-    public Aviary(List<Bird> birdList) {
-
-    }
-
     public Bird addBird(Bird bird) throws IllegalArgumentException,IllegalStateException {
-        //constraint
-//        num b < 5 done
-//        bird cannot be extinct done
-//        bird type done
-
         if (!bird.isExtinct()) {
             if (birdList.isEmpty()) {
                 birdList.add(bird);
@@ -125,7 +143,7 @@ public class Aviary {
         return null;
     }
 
-    public void addFood(Bird bird){
+    private void addFood(Bird bird){
         for(String food: bird.getFood()){
             if(aviaryFoodStore.containsKey(food)){
                 aviaryFoodStore.put(food, aviaryFoodStore.get(food) + 1);
@@ -135,70 +153,4 @@ public class Aviary {
             }
         }
     }
-//    private int birdCount;
-//    private List<Bird> birdList = new ArrayList<Bird>();
-//    private char flag = Character.MIN_VALUE;
-//
-//    private Set<String> characteristicList = new HashSet<String>();
-//
-//
-//    public void addBird(Bird b) throws IllegalArgumentException{
-//
-//        if(birdCount < 5){
-//            if(b.isExtinct() == true){
-//                throw new IllegalArgumentException("The bird is extinct. Cannot add it to the aviary");
-//            }
-//            //check is the birds in the aviary are not waterfowls, birdsofprey or flightless birds
-//            //char flag = w (waterfowl), p (birdsofprey), f (flightless bird)
-//
-//            if(birdCount==0){
-//                birdList.add(b);
-//                if(b.getType() == Bird.Type.BIRDS_OF_PREY){
-//                    flag = 'p';
-//                } else if (b.getType() == Bird.Type.FLIGHTLESS_BIRDS) {
-//                    flag = 'f';
-//                } else if (b.getType() == Bird.Type.WATERFOWL){
-//                    flag = 'w';
-//                }
-//            }
-//            else{
-//                if(flag == Character.MIN_VALUE){
-//                    birdList.add(b);
-//                }
-//                else
-//                {
-//                    if(b.getType() == Bird.Type.BIRDS_OF_PREY && flag == 'p'){
-//                        birdList.add(b);
-//                    } else if (b.getType() == Bird.Type.FLIGHTLESS_BIRDS && flag == 'f') {
-//                        birdList.add(b);
-//                    } else if (b.getType() == Bird.Type.WATERFOWL && flag == 'w'){
-//                        birdList.add(b);
-//                    }
-//                    else{
-//                        throw new IllegalArgumentException("The birds in this aviary cannot be mixed with other birds");
-//                    }
-//                }
-//            }
-//            birdList.add(b);
-//        }
-//        else{
-//            throw new IllegalArgumentException("Aviary is full");
-//        }
-
-//    }
-
-//    public void removeBird(Bird b) throws IllegalArgumentException{
-//
-//        if(birdCount!=0){
-//            if(birdList.contains(b)){
-//                birdList.remove(b);
-//            }
-//            else{
-//                throw new IllegalArgumentException("Aviary does not have the bird you want to remove");
-//            }
-//        }
-//        else{
-//            throw new IllegalArgumentException("Aviary is empty");
-//        }
-//    }
 }

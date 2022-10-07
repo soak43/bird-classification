@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Bird extends Animalia {
 
-    enum Type {
+    public enum Type {
         BIRDS_OF_PREY,
         FLIGHTLESS_BIRDS,
         OWL,
@@ -26,7 +26,6 @@ public class Bird extends Animalia {
     ));
 
     private List<String> food = new ArrayList<String>();
-
 
     public String getName() {
         return name;
