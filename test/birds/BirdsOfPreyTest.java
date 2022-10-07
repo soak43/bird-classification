@@ -23,22 +23,34 @@ public class BirdsOfPreyTest {
     @Test
     public void testConstructor1(){
         BoP = new BirdsOfPrey();
+        assertEquals(null,BoP.getName());
         assertEquals(Bird.Type.BIRDS_OF_PREY, BoP.getType());
+        assertEquals(0,BoP.getNumOfWings());
+        assertEquals(Arrays.asList(), BoP.getCharacteristic());
+        assertEquals(Arrays.asList(), BoP.getFood());
+        assertEquals(false,BoP.isExtinct());
     }
 
     @Test
     public void testConstructor2(){
         BoP1 = new BirdsOfPrey("eagles");
+        assertEquals("eagles",BoP1.getName());
         assertEquals(2,BoP1.getNumOfWings());
         assertEquals(Bird.Type.BIRDS_OF_PREY, BoP1.getType());
         assertEquals(Arrays.asList("They have sharp, hooked beaks with visible nostrils."), BoP1.getCharacteristic());
         assertEquals(Arrays.asList("small mammals","insects"), BoP1.getFood());
+        assertEquals(false,BoP1.isExtinct());
     }
 
     @Test
     public void testOspreyFood(){
         BoP1 = new BirdsOfPrey("osprey");
+        assertEquals("osprey",BoP1.getName());
+        assertEquals(2,BoP1.getNumOfWings());
+        assertEquals(Bird.Type.BIRDS_OF_PREY, BoP1.getType());
+        assertEquals(Arrays.asList("They have sharp, hooked beaks with visible nostrils."), BoP1.getCharacteristic());
         assertEquals(Arrays.asList("small mammals", "other birds"), BoP1.getFood());
+        assertEquals(false,BoP1.isExtinct());
     }
 
     @Test(expected = IllegalArgumentException.class)

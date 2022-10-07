@@ -20,26 +20,43 @@ public class FlightlessBirdsTest {
     public void testConstructor1(){
         FB1 = new FlightlessBirds();
         assertEquals(Bird.Type.FLIGHTLESS_BIRDS, FB1.getType());
+        assertEquals(null,FB1.getName());
+        assertEquals(0,FB1.getNumOfWings());
+        assertEquals(Arrays.asList(), FB1.getCharacteristic());
+        assertEquals(Arrays.asList(), FB1.getFood());
+        assertEquals(false,FB1.isExtinct());
     }
 
     @Test
     public void testConstructor2(){
         FB1 = new FlightlessBirds("emu");
+        assertEquals("emu",FB1.getName());
         assertEquals(0,FB1.getNumOfWings());
         assertEquals(Bird.Type.FLIGHTLESS_BIRDS, FB1.getType());
         assertEquals(Arrays.asList("They live on the ground"), FB1.getCharacteristic());
         assertEquals(Arrays.asList("seeds", "fruits"), FB1.getFood());
+        assertEquals(false,FB1.isExtinct());
     }
 
     @Test
     public void testKiwiFood(){
         FB1 = new FlightlessBirds("kiwi");
+        assertEquals("kiwi",FB1.getName());
+        assertEquals(0,FB1.getNumOfWings());
+        assertEquals(Bird.Type.FLIGHTLESS_BIRDS, FB1.getType());
+        assertEquals(Arrays.asList("They live on the ground"), FB1.getCharacteristic());
         assertEquals(Arrays.asList("buds", "berries", "seeds"), FB1.getFood());
+        assertEquals(false,FB1.isExtinct());
     }
 
     @Test
     public void testIsExtinct(){
         FB1 = new FlightlessBirds("moa");
+        assertEquals("moa",FB1.getName());
+        assertEquals(0,FB1.getNumOfWings());
+        assertEquals(Bird.Type.FLIGHTLESS_BIRDS, FB1.getType());
+        assertEquals(Arrays.asList("They live on the ground"), FB1.getCharacteristic());
+        assertEquals(Arrays.asList("seeds", "fruits"), FB1.getFood());
         assertEquals(true,FB1.isExtinct());
     }
 

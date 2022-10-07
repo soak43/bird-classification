@@ -53,8 +53,8 @@ public class Parrot extends Bird {
         this.noOfWords = noOfWords;
     }
 
-    public void speak(String favoriteSaying){
-        System.out.println(favoriteSaying);
+    public String speak(String favoriteSaying){
+        return "The parrot is saying - " + favoriteSaying;
     }
 
 
