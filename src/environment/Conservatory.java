@@ -7,7 +7,7 @@ import java.util.*;
 public class Conservatory {
 
     private Set<Aviary> aviarySet = new HashSet<>();
-    private Map<String,List> dictionary =  new TreeMap<>();
+    private Map<String,List> alphabeticalOrderDictionaryOfBirds =  new TreeMap<>();
     private Map<String,Integer> conservatoryFoodReq= new HashMap<>();
 
     public Set<Aviary> getAviarySet() {
@@ -24,96 +24,85 @@ public class Conservatory {
         getFoodReq();
 
     }
+//   GOOD  add new aviary
     public Aviary addAviary(Aviary aviary) throws IllegalStateException{
         if(aviarySet.size()<20){
             aviarySet.add(aviary);
+            sortedAlphabetically();
             return aviary;
         } else{
             throw new IllegalStateException("Cannot add more than 20 aviaries per conservatory");
         }
     }
-
+// GOOD  add New Aviary without a bird Good by name and loc
     private Aviary addAviary(String name, String location){
         Aviary aviary = new Aviary(name,location);
-        aviarySet.add(aviary);
+        addAviary(aviary);
         return aviary;
     }
+//    GOOD add New avairy with a bird name loc and bird
     private Aviary addAviary(String name, String location, Bird bird){
-        Aviary aviary  = addAviary(name,location,bird);
-//        aviary.addBird(bird);
-        dictionary.put(bird.getName(), Arrays.asList(location));
-        aviarySet.add(aviary);
+        Aviary aviary  = addAviary(name,location);
+        aviary.addBird(bird);
+        addAviary(aviary);
+//        dictionary.put(bird.getName(), Arrays.asList(location));
+//        aviarySet.add(aviary);
         return aviary;
     }
+//    GOOD
     private Aviary addAviary(String name,String location,List<Bird> birds) {
-        Aviary aviary  = addAviary(name,location,birds);
-
-//        aviary.addBird(birds);
-//        for(Bird bird: birds){
-//            dictionary.put(bird.getName(), Arrays.asList(location));
-//        }
-        aviarySet.add(aviary);
+        Aviary aviary = addAviary(name, location);
+        for (Bird bird : birds) {
+            aviary.addBird(bird);
+        }
+        addAviary(aviary);
         return aviary;
     }
 
+//GOOD
     public List<Aviary> addAviary(List<Aviary> aviaries){
         for( Aviary aviary: aviaries ){
-            aviarySet.add(aviary);
+            addAviary(aviary);
         }
         return aviaries;
     }
 
 
-
-    private Bird AddBirdToConservatory(Bird bird){
+//deciding
+    private Boolean AddBirdToConservatory(Bird bird) throws IllegalArgumentException,IllegalStateException {
         // check if there are open spots based on bird type
-        for(Aviary aviary : aviarySet){
-            if(bird.getType() == Bird.Type.BIRDS_OF_PREY || bird.getType() == Bird.Type.FLIGHTLESS_BIRDS
-                    || bird.getType() == Bird.Type.WATERFOWL ){
-                if(aviary.getBirdTypeSet().contains(bird.getType())){
+        boolean added = false;
+        for (Aviary aviary : aviarySet) {
+            if (!added) {
+                try {
                     aviary.addBird(bird);
-                    if(dictionary.containsKey(bird.getName())){
-                        dictionary.get(bird.getName()).add(aviary.getLocation());
-                    }else{
-                        dictionary.put(bird.getName(), Arrays.asList(aviary.getLocation()));
-                    }
-                    return bird;
-                }
-            }
-            else{
-                if(!aviary.getBirdTypeSet().contains(Bird.Type.BIRDS_OF_PREY) &&
-                        !aviary.getBirdTypeSet().contains(Bird.Type.FLIGHTLESS_BIRDS) &&
-                        !aviary.getBirdTypeSet().contains(Bird.Type.WATERFOWL)){
-                    aviary.addBird(bird);
-                    if(dictionary.containsKey(bird.getName())){
-                        dictionary.get(bird.getName()).add(aviary.getLocation());
-                    }else{
-                        dictionary.put(bird.getName(), Arrays.asList(aviary.getLocation()));
-                    }
-                    return bird;
+                    return true;
+                } catch (IllegalArgumentException | IllegalStateException e) {
+
                 }
             }
         }
-        return null;
-
+        return false;
     }
+
+// good
     public Map<String,List> sortedAlphabetically(){
-        return dictionary;
+        return  alphabeticalOrderDictionaryOfBirds;
     }
-
+//good
     public Map<String,List> sortedAlphabetically(Set<Aviary> aviarySet){
         for(Aviary aviary: aviarySet){
             for(Bird bird : aviary.getBirdList()){
-                if(dictionary.containsKey(bird.getName())){
-                    dictionary.get(bird.getName()).add(aviary.getLocation());
+                if(alphabeticalOrderDictionaryOfBirds.containsKey(bird.getName())){
+                    alphabeticalOrderDictionaryOfBirds.get(bird.getName()).add(aviary.getLocation());
                 }else{
-                    dictionary.put(bird.getName(), Arrays.asList(aviary.getLocation()));
+                    alphabeticalOrderDictionaryOfBirds.put(bird.getName(), Arrays.asList(aviary.getLocation()));
                 }
             }
         }
-        return dictionary;
+        return alphabeticalOrderDictionaryOfBirds;
     }
-
+// good
     public List<Aviary> getAviaryListForBird(Bird bird){
         List<Aviary> aviariesFound = new ArrayList<>();
         for(Aviary aviary: aviarySet){
@@ -123,7 +112,7 @@ public class Conservatory {
         }
         return aviariesFound;
     }
-
+//Good
     public Map<String,Integer> getFoodReq(){
         for(Aviary aviary: aviarySet){
             for(Map.Entry<String,Integer> entry : aviary.getAviaryFoodStore().entrySet()){
@@ -136,6 +125,7 @@ public class Conservatory {
         }
         return conservatoryFoodReq;
     }
+//    good
     public void aviaryLocBirdInfo(){
         String content = "";
         for(Aviary aviary: aviarySet){
@@ -147,6 +137,7 @@ public class Conservatory {
         }
         System.out.println(content);
     }
+//    good
     public String getAviaryInfo(String aviaryName){
         for(Aviary aviary:aviarySet){
             if(aviary.getName() == aviaryName){
