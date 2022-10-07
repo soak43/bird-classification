@@ -9,11 +9,15 @@ public class Conservatory {
     private Set<Aviary> aviarySet = new HashSet<>();
     private Map<String,List> alphabeticalOrderDictionaryOfBirds =  new TreeMap<>();
     private Map<String,Integer> conservatoryFoodReq= new HashMap<>();
-
+    // good
     public Set<Aviary> getAviarySet() {
         return aviarySet;
     }
-
+    // good
+    public Map<String,List> getAlphabeticalOrderDictionaryOfBirds(){
+        return  alphabeticalOrderDictionaryOfBirds;
+    }
+    // good
     public Map<String, Integer> getConservatoryFoodReq() {
         return conservatoryFoodReq;
     }
@@ -47,8 +51,6 @@ public class Conservatory {
         Aviary aviary  = addAviary(name,location);
         aviary.addBird(bird);
         addAviary(aviary);
-//        dictionary.put(bird.getName(), Arrays.asList(location));
-//        aviarySet.add(aviary);
         return aviary;
     }
 //    GOOD
@@ -87,10 +89,8 @@ public class Conservatory {
         return false;
     }
 
-// good
-    public Map<String,List> getAlphabeticalOrderDictionaryOfBirds(){
-        return  alphabeticalOrderDictionaryOfBirds;
-    }
+
+
 //good
     public Map<String,List> sortAlphabetically(){
         for(Aviary aviary: aviarySet){
