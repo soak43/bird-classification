@@ -162,7 +162,11 @@ public class ConservatoryTest {
         aviarySetUse.addAll(Arrays.asList(a1,a2));
         Conservatory c10 = new Conservatory(aviarySetUse);
         Owl o = new Owl();
-        assertEquals(Arrays.asList(a1,a2),c10.getAviaryListForBird(o));
+        List<Aviary> first = new ArrayList<>();
+        first.add(a1);
+        first.add(a2);
+        List<Aviary> second = c10.getAviaryListForBird(o);
+        assertTrue(first.size() == second.size() && first.containsAll(second) && second.containsAll(first));
     }
 
     @Test
@@ -200,6 +204,45 @@ public class ConservatoryTest {
         Aviary a1 = new Aviary("hi","loc");
         Conservatory c = new Conservatory(Set.of(a1));
         assertEquals("No Aviary with that name present",c.getAviaryInfo("Aviary1"));
+    }
+    @Test
+    public void addAviaryList(){
+        List<Aviary> aviaryList = new ArrayList<Aviary>();
+        for(int i=0 ; i < 3 ; i++){
+            Aviary aviary = new Aviary("Aviary " + i,"Location",new Owl());
+            aviaryList.add(aviary);
+        }
+        Owl o2 = new Owl();
+        Parrot myParrot = new Parrot("sulfur-crested cockatoo");
+        List<Bird> birdList = new ArrayList<>();
+        birdList.add(myParrot);
+        birdList.add(o2);
+        Aviary aviary1 = new Aviary("Aviary1","Kochi", birdList);
+        Aviary test = new Aviary("Sayali's Aviary","Pune", birdList);
+        Set<Aviary> aviarySet = new HashSet<>();
+        aviarySet.add(aviary1);
+        Conservatory c = new Conservatory(aviarySet);
+        assertEquals(aviaryList,c.addAviary(aviaryList));
+
+    }
+    @Test
+    public void addAviaryNameLocBird(){
+
+
+        Owl o2 = new Owl();
+        Parrot myParrot = new Parrot("sulfur-crested cockatoo");
+        List<Bird> birdList = new ArrayList<>();
+        birdList.add(myParrot);
+        birdList.add(o2);
+        Aviary aviary1 = new Aviary("Aviary1","Kochi", o2);
+        Aviary test = new Aviary("Sayali's Oak Hill","Pune", birdList);
+        Set<Aviary> aviarySet = new HashSet<>();
+        aviarySet.add(aviary1);
+        Conservatory c = new Conservatory(aviarySet);
+        assertEquals(test.getName(),c.addAviary("Sayali's Oak Hill","Pune",birdList).getName());
+        assertEquals(test.getLocation(),c.addAviary("Sayali's Oak Hill","Pune",birdList).getLocation());
+        assertEquals(test.getBirdList(),c.addAviary("Sayali's Oak Hill","Pune",birdList).getBirdList());
+
     }
 
 

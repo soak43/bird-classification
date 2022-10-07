@@ -50,7 +50,7 @@ public class Conservatory {
         return aviary;
     }
 //    GOOD add New avairy with a bird name loc and bird
-    private Aviary addAviary(String name, String location, Bird bird){
+    public Aviary addAviary(String name, String location, Bird bird){
         Aviary aviary  = addAviary(name,location);
         aviary.addBird(bird);
         addAviary(aviary);
@@ -79,22 +79,20 @@ public class Conservatory {
     private Boolean AddBirdToConservatory(Bird bird) throws IllegalArgumentException,IllegalStateException {
         // check if there are open spots based on bird type
         boolean added = false;
+
         for (Aviary aviary : aviarySet) {
             if (!added) {
                 try {
                     aviary.addBird(bird);
-                    return true;
+                    added = true;
+                    break;
                 } catch (IllegalArgumentException | IllegalStateException e) {
-
+                    added = false;
                 }
             }
         }
-        return false;
+        return added;
     }
-
-
-
-//good
     public Map<String,ArrayList<String>> sortAlphabetically(){
         for(Aviary aviary: aviarySet){
             for(Bird bird : aviary.getBirdList()){
@@ -121,7 +119,6 @@ public class Conservatory {
         }
         return aviariesFound;
     }
-
     public Map<String,Integer> getFoodReq(){
         for(Aviary aviary: aviarySet){
             for(Map.Entry<String,Integer> entry : aviary.getAviaryFoodStore().entrySet()){
@@ -134,7 +131,7 @@ public class Conservatory {
         }
         return conservatoryFoodReq;
     }
-//    good
+
     public String aviaryLocBirdInfo(){
         String content = "";
         for(Aviary aviary: aviarySet){
@@ -145,9 +142,7 @@ public class Conservatory {
             content = content + "\n";
         }
         return content;
-//        System.out.println(content);
     }
-//    good
     public String getAviaryInfo(String aviaryName){
         for(Aviary aviary:aviarySet){
             if(aviary.getName() == aviaryName){
@@ -156,5 +151,4 @@ public class Conservatory {
         }
         return "No Aviary with that name present";
     }
-
 }
