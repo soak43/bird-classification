@@ -130,7 +130,7 @@ public class Bird extends Animalia {
             }
 
         }
-        content += ".";
+
         return content;
 
     }

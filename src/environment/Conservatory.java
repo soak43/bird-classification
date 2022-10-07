@@ -145,7 +145,7 @@ public class Conservatory {
     public String getAviaryInfo(String aviaryName){
         for(Aviary aviary:aviarySet){
             if(aviary.getName() == aviaryName){
-                return aviary.aviaryInfo();
+                return aviary.Info();
             }
         }
         return "No Aviary with that name present";
