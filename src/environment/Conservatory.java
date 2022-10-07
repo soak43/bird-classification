@@ -24,6 +24,14 @@ public class Conservatory {
         getFoodReq();
 
     }
+    public Aviary addAviary(Aviary aviary) throws IllegalStateException{
+        if(aviarySet.size()<20){
+            aviarySet.add(aviary);
+            return aviary;
+        } else{
+            throw new IllegalStateException("Cannot add more than 20 aviaries per conservatory");
+        }
+    }
 
     private Aviary addAviary(String name, String location){
         Aviary aviary = new Aviary(name,location);
@@ -47,10 +55,7 @@ public class Conservatory {
         aviarySet.add(aviary);
         return aviary;
     }
-    public Aviary addAviary(Aviary aviary){
-        aviarySet.add(aviary);
-        return aviary;
-    }
+
     public List<Aviary> addAviary(List<Aviary> aviaries){
         for( Aviary aviary: aviaries ){
             aviarySet.add(aviary);
