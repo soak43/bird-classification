@@ -42,8 +42,8 @@ public class FlightlessBirds extends Bird {
     }
 
     @Override
-    public void fly(){
-        System.out.println("Oops, cannot fly");
+    public void fly() throws IllegalArgumentException{
+        throw new IllegalArgumentException();
     }
 
 

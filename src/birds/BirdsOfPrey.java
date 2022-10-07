@@ -16,10 +16,10 @@ public class BirdsOfPrey extends Bird {
             setNumOfWings(2);
             setName(birdName);
             if(birdName.toLowerCase() == "osprey"){
-                setFood(Arrays.asList("Small mammals", "Small birds", "reptiles"));
+                setFood(Arrays.asList("small mammals", "other birds"));
             }
             else{
-                setFood(Arrays.asList("Small mammals","Insects"));
+                setFood(Arrays.asList("small mammals","insects"));
             }
         } else {
             throw new IllegalArgumentException("Enter a bird from : HAWKS, EAGLES OR OSPREY");
@@ -37,14 +37,8 @@ public class BirdsOfPrey extends Bird {
 
     }
 
-    public void Hunt(String prey){
-
-        System.out.println("I will Kill you");
+    public String Hunt(String prey){
+        return "The bird is hunting";
     }
-
-
-
-
-
 
 }
