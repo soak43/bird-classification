@@ -206,7 +206,7 @@ public class ConservatoryTest {
         assertEquals("No Aviary with that name present",c.getAviaryInfo("Aviary1"));
     }
     @Test
-    public void addAviaryList(){
+    public void addAviaryOverload(){
         List<Aviary> aviaryList = new ArrayList<Aviary>();
         for(int i=0 ; i < 3 ; i++){
             Aviary aviary = new Aviary("Aviary " + i,"Location",new Owl());
@@ -242,6 +242,68 @@ public class ConservatoryTest {
         assertEquals(test.getName(),c.addAviary("Sayali's Oak Hill","Pune",birdList).getName());
         assertEquals(test.getLocation(),c.addAviary("Sayali's Oak Hill","Pune",birdList).getLocation());
         assertEquals(test.getBirdList(),c.addAviary("Sayali's Oak Hill","Pune",birdList).getBirdList());
+
+    }
+    @Test
+    public void AddBirdToConservatory(){
+        Owl o2 = new Owl();
+        Parrot myParrot = new Parrot("sulfur-crested cockatoo");
+        List<Bird> birdList = new ArrayList<>();
+        birdList.add(myParrot);
+        birdList.add(o2);
+        Aviary test = new Aviary("Sayali's Oak Hill","Pune", birdList);
+        Set<Aviary> aviarySet = new HashSet<>();
+        aviarySet.add(test);
+        Conservatory c = new Conservatory(aviarySet);
+
+        assertFalse(c.addBirdToConservatory((Bird)null));
+    }
+    @Test
+    public void AddBirdToConservatory2(){
+        Owl o2 = new Owl();
+        Parrot myParrot = new Parrot("sulfur-crested cockatoo");
+        List<Bird> birdList = new ArrayList<>();
+        birdList.add(myParrot);
+        birdList.add(o2);
+        Aviary test = new Aviary("Sayali's Oak Hill","Pune", birdList);
+        Set<Aviary> aviarySet = new HashSet<>();
+        aviarySet.add(test);
+        Conservatory c = new Conservatory(aviarySet);
+
+        assertFalse(c.addBirdToConservatory(new ShoreBird("great auk")));
+    }
+    @Test
+    public void AddBirdToConservatory3(){
+        Owl o2 = new Owl();
+        Parrot myParrot = new Parrot("sulfur-crested cockatoo");
+        List<Bird> birdList = new ArrayList<>();
+        birdList.add(myParrot);
+        birdList.add(o2);
+        Aviary test = new Aviary("Sayali's Oak Hill","Pune", birdList);
+        Set<Aviary> aviarySet = new HashSet<>();
+        aviarySet.add(test);
+        Conservatory c = new Conservatory(aviarySet);
+
+        assertTrue(c.addBirdToConservatory(new Parrot("gray parrot")));
+    }
+    @Test
+    public void addAviaryList(){
+
+        Owl o2 = new Owl();
+        Parrot myParrot = new Parrot("sulfur-crested cockatoo");
+        List<Bird> birdList = new ArrayList<>();
+        birdList.add(myParrot);
+        birdList.add(o2);
+//        Aviary a1 = new Aviary("Sayali's Oak Hill","Pune", );
+        Aviary test = new Aviary("Sayali's Oak Hill","Pune", new Owl());
+        Set<Aviary> aviarySet = new HashSet<>();
+        aviarySet.add(test);
+        Conservatory c = new Conservatory(aviarySet);
+        assertEquals(test.getName(),c.addAviary("Sayali's Oak Hill","Pune",new Owl()).getName());
+        assertEquals(test.getLocation(),c.addAviary("Sayali's Oak Hill","Pune",new Owl()).getLocation());
+        assertEquals(test.getBirdList(),c.addAviary("Sayali's Oak Hill","Pune",new Owl()).getBirdList());
+
+
 
     }
 

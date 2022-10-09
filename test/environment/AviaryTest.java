@@ -273,7 +273,10 @@ public class AviaryTest {
     public void addBirdNullCase() {
         Parrot myParrot = new Parrot("sulfur-crested cockatoo");
         Owl o2 = new Owl();
-        Aviary aviary = new Aviary("Anshul's Aviary","Kochi", Arrays.asList(myParrot,o2));
+        List<Bird> b = new ArrayList<>();
+        b.add(myParrot);
+        b.add(o2);
+        Aviary aviary = new Aviary("Anshul's Aviary","Kochi", b);
 
         aviary.addBird((Bird)null);
     }
@@ -331,7 +334,7 @@ public class AviaryTest {
     @Test(expected = IllegalStateException.class)
     public void addBirdOverflowBOP() {
         List<Bird> myBirds = new ArrayList<>();
-        for(int i = 0 ; i <  6; i ++){
+        for(int i = 0 ; i <  5; i ++){
             myBirds.add(new BirdsOfPrey());
         }
 
